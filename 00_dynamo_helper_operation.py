@@ -7,7 +7,7 @@ def exit_dialog(title = "Operation Notice", content = "Please enable the script 
     sys.exit("Operation Aborted!")
 
 #Enforce input as list
-def input_to_list(obj):
-    result = None
-    result = obj if isinstance(obj, list) else result = [obj]
-    return UnwrapElement(result)
+def input_to_list(obj, unwrap = True):
+    result = obj if isinstance(obj, list) else [obj]
+    result = UnwrapElement(result) if unwrap == True else result
+    return result
