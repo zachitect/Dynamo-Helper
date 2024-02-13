@@ -2,32 +2,21 @@ import os
 from os import listdir
 from os.path import isfile, join
 
+#read txt file
 def txt_reader(file_path):
     file = open(file_path, "r")
     content = file.read()
     file.close()
     return content
 
-def file_finder(dir_path):
-	vptxt_dict = []
-	for path in listdir(dir_path):
-	    file_name = None
-	    full_path = join(dir_path, path)
-	    if isfile(full_path):
-	        file_split = os.path.splitext(path)
-	        if len(file_split) == 2:
-	            if file_split[1].lower() == ".vptxt":
-	                file_name = file_split[0]
-	    if file_name != None:
-	        vptxt_content = txt_reader(full_path)
-	        vptxt_dict.append([file_name, vptxt_content])
-	return vptxt_dict
-
-# ----- Dynamo Input -----
-if IN[0] == False:
-    sys.exit("Operation Aborted")
-folder_path = IN[1]
-vptxt_entries = file_finder(folder_path)
-
-# ----- Dynamo Output -----
-OUT = vptxt_entries
+#list all files of specific extension from directory
+def files_from_directory(dir_path, extension):
+    file_paths = []
+    for path in listdir(dir_path):
+        full_path = join(dir_path, path)
+        if isfile(full_path): #confirm that the path is a file not a directory
+	    file_split = os.path.splitext(path)
+	    if len(file_split) == 2: #root path + extension name
+	        if file_split[1].lower() == extension.lower(): #check extension name
+		    files_paths.append(full_path)
+    return file_paths
