@@ -20,3 +20,11 @@ def files_from_directory(dir_path, dot_ext):
 	        if file_split[1].lower() == dot_ext.lower(): #check extension name
 		        file_paths.append(full_path)
     return file_paths
+
+#test file against given extension
+def test_file_ext(path, dot_ext):
+    result = False
+    split = os.path.splitext(path)
+    if split[1].lower() == dot_ext.lower():
+        result = True
+    return result
