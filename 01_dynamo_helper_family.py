@@ -9,3 +9,13 @@ class FamilyOption(IFamilyLoadOptions):
         source = FamilySource.Family
         overwriteParameterValues = True
         return True
+#Alternative way of initialising transaction to family documents
+with Transaction(family_document, "Add Parameters") as t:
+    try:
+        t.Start()
+        for definition in definitions:
+            family_manager.AddParameter(definition, BuiltInParameterGroup.PG_DATA, True)
+        title.append(family_document.Title)
+        t.Commit()
+    except:
+        t.RollBack()
