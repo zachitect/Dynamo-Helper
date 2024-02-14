@@ -12,3 +12,15 @@ def input_to_list(obj, unwrap = True):
     result = obj if isinstance(obj, list) else [obj]
     result = UnwrapElement(result) if unwrap == True else result
     return result
+
+#select files:
+clr.AddReference("System.Windows.Forms")
+from System.Windows import Forms
+def dialog_select_files():
+    result = None
+    ofd = Forms.OpenFileDialog()
+    ofd.Filter = "Revit Family Files|*.rfa"
+    ofd.Multiselect = True
+    if ofd.ShowDialog() == Forms.DialogResult.OK:
+        result = ofd.FileNames
+    return result
