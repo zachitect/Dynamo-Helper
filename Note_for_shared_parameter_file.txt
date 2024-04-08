@@ -1,0 +1,10 @@
+Shared Parameter File can be manually edited:
+Best to edit values in Excel
+Maintain GUIDs of existing parameters
+Always add new UNIQUE GUIDs for new parameters
+Edit in Text Editor once saved from Excel
+Remove Empty Lines
+Remove META Version Lines
+Be careful of TAB Spaces
+Save as ANSI txt if necessary
+A corrupted Shared Parameter TXT is recoverable most time
